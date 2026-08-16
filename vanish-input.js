@@ -1,19 +1,10 @@
-/* Vanishing input
-   Effect after Aceternity UI's placeholders-and-vanish-input, itself after
-   Rauno's vanish input. Rewritten in vanilla JS.
-
-   Text is drawn to a canvas and sampled into one square per lit pixel. A
-   threshold sweeps across it right to left; particles it has passed drift and
-   shrink until they're gone. Handles any number of inputs and textareas in one
-   form - they all dissolve together on submit. */
-
 (function () {
-    var SWEEP_MS = 1500;   // time for the front to cross the widest field
-    var DRIFT_X = 1.2;     // px a loose particle drifts right each frame
-    var JITTER = 1.0;      // random walk on top of that
-    var SPREAD = 1.0;      // vertical scatter
-    var DECAY = 0.094;     // how fast a particle shrinks
-    var REST_MS = 2000;    // pause before the placeholders return
+    var SWEEP_MS = 1500;   
+    var DRIFT_X = 1.2;     
+    var JITTER = 1.0;    
+    var SPREAD = 1.0;     
+    var DECAY = 0.094;    
+    var REST_MS = 2000;   
 
     var FIELDS = 'input[type=text], input[type=email], input:not([type]), textarea';
 
@@ -47,7 +38,6 @@
             canvas.style.top = r.top - hr.top + 'px';
         }
 
-        // a textarea wraps, so the text has to be broken the same way here
         function wrap(text, maxWidth) {
             var out = [];
             text.split('\n').forEach(function (para) {
@@ -296,7 +286,6 @@
             passThrough ? { capture: true } : false
         );
 
-        // Enter submits a single-line field; in a textarea it should make a new line
         for (var k = 0; k < fields.length; k++) {
             (function (f) {
                 f.el.addEventListener('keydown', function (e) {
